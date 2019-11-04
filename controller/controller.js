@@ -11,53 +11,51 @@ var path = require('path');
 
 
 router.get("/scrape", function(req, res) {
-  request("https://cnn.com", function(error, response, html) {
-    var $ = cheerio.load(html);
+  request("https://cnn.com", function(error, response) {
+    var $ = cheerio.load(response);
     var titlesArray = [];
-
+console.log("before the loop")
     $("h2").each(function(i, element) {
+      console.log(element)
       var result = {};
-
+console.log("the site is scraped")
       result.title = $(this)
-        // .html();
-        // .text();
-console.log(result.title)
-      // result.image = $(this)
-      //   .attr("src");
+         .html()
+         .text()
+console.log(result.title);
+      
 
       // result.link = $(this)
       //   .children("a")
       //   .attr("href");
 console.log("the site is scraped")
-      if (result.title !== "" && result.image !== "") {
-        if (titlesArray.indexOf(result.title) == -1) {
-          titlesArray.push(result.title);
+      // if (result.title !== "" && result.image !== "") {
+      //   if (titlesArray.indexOf(result.title) == -1) {
+      //     titlesArray.push(result.title);
 
-          Recipe.count({ title: result.title }, function(err, test) {
-            if (test === 0) {
-              var entry = new Recipe(result);
+      //     article.count({ title: result.title }, function(err, test) {
+      //       if (test === 0) {
+      //         var entry = new article(result);
 
-              entry.save(function(err, doc) {
-                if (err) {
-                  console.log(err);
-                } else {
-                  console.log(doc);
-                }
-              });
-            }
-          });
-        } else {
-          console.log("Recipe already exists.");
-        }
-      } else {
-        console.log("Not saved to DB, missing data");
-      }
+      //         entry.save(function(err, doc) {
+      //           if (err) {
+      //             console.log(err);d
+      //           } else {
+      //             console.log(doc);
+      //           }
+      //         });
+      //       }
+      //     });
+      //   } else {
+      //     console.log("article already exists.");
+      //   }
+      // } else {
+      //   console.log("Not saved to DB, missing data");
+      // }
     });
     
   });
 });
-
-
 
 
 
