@@ -21,7 +21,7 @@ app.set("view engine", "handlebars");
 // this should connect front end
 //==================Connection to Mongoose==================//
 var MONGODB_URI =
- process.env.MONGODB_URI || "mongodb://localhost/CNNHeadlines";
+ process.env.MONGODB_URI || "mongodb://localhost/BET";
 //mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 var db = mongoose.connection;

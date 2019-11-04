@@ -11,7 +11,7 @@ var path = require('path');
 
 
 router.get("/scrape", function(req, res) {
-  request("https://cnn.com", function(error, response) {
+  request("https:/bet.com/entertainment", function(error, response) {
     var $ = cheerio.load(response);
     var titlesArray = [];
 console.log("before the loop")
