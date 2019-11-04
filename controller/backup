@@ -1,0 +1,21 @@
+router.get("/", function(req, res) {
+  res.redirect("/articles");
+});
+
+router.get("/scrape", function(req, res) {
+  request("https://cnn.com"function(response) {
+
+  // Load the Response into cheerio and save it to a variable
+  // '$' becomes a shorthand for cheerio's selector commands, much like jQuery's '$'
+  var $ = cheerio.load(response);
+
+  // An empty array to save the data that we'll scrape
+ 
+
+  // With cheerio, find each p-tag with the "title" class
+  // (i: iterator. element: the current element)
+  $("h2").each(function(i, element) {
+ var results = [];
+    // Save the text of the element in a "title" variable
+    var title = $(element).text();
+    console.log(title);
